@@ -16,11 +16,14 @@ public class PlayerGravity : MonoBehaviour
         CheckGroundStatus();
         Sink();
     }
+    //Check if the player is hitting the ground
+
     void CheckGroundStatus()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
     }
 
+    //Sink the player overime
     void Sink()
     {
         if(!isGrounded){
