@@ -3,44 +3,84 @@ using UnityEngine.XR;
 
 public class PlayerJump : MonoBehaviour
 {
-    public float jumpForce = .05f;        // The force applied when jumping
-    public float triggerThreshold = 0.8f; // The threshold for the trigger press to initiate jump
-    public bool canJump = true;         // Flag to control jumping ability
-
+    public float moveForce = 1f;        // The force applied when jumping
+    //public float triggerThreshold = 0.8f; // The threshold for the trigger press to initiate jump
+    public bool canRise = true;         // Flag to control jumping ability
+    public bool canSink = false;         // Flag to control jumping ability
+    private PlayerGravity playerGravity;
 
     void Start()
     {
+        playerGravity = GetComponent<PlayerGravity>(); // Correctly assign the component
 
+        //Debug to check if PlayerGravity script is on the same object
+        if (playerGravity == null)
+        {
+            Debug.LogError("PlayerGravity component not found on the GameObject: " + gameObject.name);
+        }
+        else
+        {
+            Debug.Log("PlayerGravity component successfully found on the GameObject: " + gameObject.name);
+        }
     }
 
     void Update()
     {
-        // Check if the player wants to jump using the trigger analog value
-        if (canJump && IsTriggerPressed())
+        if (playerGravity != null)
         {
-            Jump();
+            // Check if the player wants to rise/ sink
+            if (AButtonPressed())
+            {
+                Rise();
+                //Debug.Log("Rise");
+            }
+            if (!playerGravity.isGrounded && BButtonPressed())
+            {
+                Sink();
+                //Debug.Log("Sink");
+            }
         }
     }
 
-    bool IsTriggerPressed()
+    bool AButtonPressed()
     {
         // Get the active input device (left and right hand controllers)
-        InputDevice leftHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        //InputDevice leftHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         InputDevice rightHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
 
         // Check if the trigger is pressed on either controller
-        bool leftTriggerPressed = leftHandDevice.TryGetFeatureValue(CommonUsages.trigger, out float leftTriggerValue) && leftTriggerValue > triggerThreshold;
-        bool rightTriggerPressed = rightHandDevice.TryGetFeatureValue(CommonUsages.trigger, out float rightTriggerValue) && rightTriggerValue > triggerThreshold;
+        //bool leftTriggerPressed = leftHandDevice.TryGetFeatureValue(CommonUsages.trigger, out float leftTriggerValue) && leftTriggerValue > triggerThreshold;
+        bool aButtonPressed = rightHandDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue;
 
-        // Return true if either trigger is pressed beyond the threshold
-        return leftTriggerPressed || rightTriggerPressed;
+        //return true if B button is pressed
+        //return leftTriggerPressed || rightTriggerPressed;
+        return aButtonPressed;
     }
 
-    void Jump()
+    bool BButtonPressed()
     {
-        //Apply jump
+        // Get the active input device (left and right hand controllers)
+        InputDevice rightHandDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+
+        // Check if the trigger is pressed on either controller
+        bool bButtonPressed = rightHandDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButton) && secondaryButton;
+
+        //return true if B button is pressed
+        return bButtonPressed;
+    }        
+    void Rise()
+    {
+        //Apply rising
         //Vector3 new(Vector3.up * jumpForce, ForceMode.Impulse);
-        Vector3 jumpMovement = new Vector3(0, jumpForce*Time.deltaTime, 0);
-        transform.position += jumpMovement;
+        Vector3 riseMovement = new Vector3(0, moveForce*Time.deltaTime, 0);
+        transform.position += riseMovement;
+    }
+
+    void Sink()
+    {
+        //Apply sinking
+        //Vector3 new(Vector3.up * jumpForce, ForceMode.Impulse);
+        Vector3 sinkMovement = new Vector3(0, moveForce*Time.deltaTime, 0);
+        transform.position -= sinkMovement;
     }
 }

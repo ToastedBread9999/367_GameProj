@@ -6,19 +6,23 @@ public class PlayerGravity : MonoBehaviour
 {
     //Player Sink speed
     public float sinkSpeed = 0.1f;
-    private bool isGrounded = true;
-    public LayerMask groundLayer;
     public float groundCheckDistance = 0.5f;
+
+    public bool isGrounded = true;
+
+    public LayerMask groundLayer;
 
     // Update is called once per frame
     void FixedUpdate()
     {
         CheckGroundStatus();
-        Sink();
+
+        //Player is always sinking
+        //Sink();
     }
     //Check if the player is hitting the ground
 
-    void CheckGroundStatus()
+    public void CheckGroundStatus()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
     }
