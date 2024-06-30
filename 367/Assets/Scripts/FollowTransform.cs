@@ -14,7 +14,7 @@ public class FollowTransform : MonoBehaviour
     public Vector3 offset;
 
     // Fixed Y position
-    public float fixedYoffset;
+    public float fixedYOffset;
     // Fixed Y position
     public float fixedYPosition;
 
@@ -31,13 +31,13 @@ public class FollowTransform : MonoBehaviour
         }
         
         // Initialize the fixed Y position based on the current position
-        fixedYoffset = playerTransform.position.y;
+        fixedYOffset += playerTransform.position.y;
     }
 
     void Update()
     {
         // Initialize the fixed Y position based on the current position
-        fixedYPosition = playerTransform.position.y + fixedYoffset;
+        fixedYPosition = playerTransform.position.y + fixedYOffset;
 
         if (playerTransform != null && cameraTransform != null)
         {
