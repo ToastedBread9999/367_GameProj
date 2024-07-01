@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/WebXR Interactions/0.22.0/Sample Scene/Scenes/Desert.unity
     guid: 85380d4847db7b74a850284461349c36
+  - enabled: 1
+    path: Assets/Scenes/Scene1.unity
+    guid: d3bb57a776c6f414f9f9061e09cabd6a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: ce9950de918cef24f9d270e79ad43a45, type: 2}
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: a91ba3b0c57522742966bc472f76f09a, type: 2}
