@@ -45,11 +45,11 @@ public class FollowTransform : MonoBehaviour
             Vector3 targetPosition = cameraTransform.position + cameraTransform.rotation * offset;
 
             // Set the position of the object, but keep the Y position fixed
-            transform.position = new Vector3(targetPosition.x, fixedYPosition, targetPosition.z);
+            transform.position = new Vector3(targetPosition.x, targetPosition.x + fixedYOffset, targetPosition.z);
 
             // Get the camera's rotation and restrict it to yaw only (horizontal rotation)
             Vector3 eulerRotation = cameraTransform.eulerAngles;
-            transform.rotation = Quaternion.Euler(0, eulerRotation.y, 0);
+            transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, 0);
         }
     }
 }
