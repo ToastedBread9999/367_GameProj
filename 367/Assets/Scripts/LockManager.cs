@@ -15,7 +15,6 @@ public class LockManager : MonoBehaviour
             KeyManager key = other.GetComponent<KeyManager>();
             if (key != null && key.isPickedUp)
             {
-                key.Used();
                 PlaceKeyInLock(key);
             }
             attached = true;

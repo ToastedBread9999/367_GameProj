@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -6,11 +7,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class OxygenTank : MonoBehaviour
 {
     public XRSocketInteractor oxygenSocket;
-    public bool isAttached = false;
     public float timeBeforeDestruction = 10.0f; // Time in seconds before the oxygen tank is destroyed after being picked up
     public float timeBeforeDisable = 2.0f; // Time in seconds before the oxygen tank socket is disabled
+    public bool isAttached = false;
+    
     private bool hasCollided = false; // Flag to check if the collision has been registered
-    bool triggerHeld = false;
+    private bool triggerHeld = false;
 
     private Coroutine disableCoroutine;
 
@@ -27,8 +29,8 @@ public class OxygenTank : MonoBehaviour
     }
 
     void Update(){
-        triggerHeld = InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValue) && triggerValue > 0.1f ||
-        InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValueTwo) && triggerValueTwo > 0.1f;
+        triggerHeld = InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValue) && triggerValue > 0.01f ||
+        InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValueTwo) && triggerValueTwo > 0.01f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,8 +39,6 @@ public class OxygenTank : MonoBehaviour
         {
             isAttached = true;
             hasCollided = true;
-
-            oxygenSocket.enabled = true;
 
             // Notify the player that this canister is attached
             PlayerManager.Instance.AttachTanks(this);
@@ -71,14 +71,24 @@ public class OxygenTank : MonoBehaviour
             {
                 Debug.LogWarning("Canvas GameObject not found.");
             }
+        } 
+    }
+
+    private void OnTriggerStay(Collider other){
+        if (other.CompareTag("Oxygen")&& hasCollided && triggerHeld){
+            oxygenSocket.enabled = true;
+            Debug.Log("Oxygen; Trigger is being pressed");
+        } else if (other.CompareTag("Oxygen")&& hasCollided && !triggerHeld){
+            Debug.Log("Oxygen; Trigger released");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Oxygen")&& !triggerHeld)
+        if (other.CompareTag("Oxygen"))
         {
             isAttached = false;
+            triggerHeld = false;
             // Notify the player that this canister is detached
             PlayerManager.Instance.DetachTank(this);
 
@@ -101,6 +111,6 @@ public class OxygenTank : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeDestruction);
 
         // Destroy the oxygen tank
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
