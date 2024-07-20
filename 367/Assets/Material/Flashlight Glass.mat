@@ -40,7 +40,7 @@ Material:
     - _SrcBlendAlpha: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 0.9981687, b: 0.8443396, a: 0.7607843}
-    - _Color: {r: 1, g: 0.9981687, b: 0.8443396, a: 0.7607843}
+    - _Color: {r: 1, g: 0.99816865, b: 0.8443396, a: 0.7607843}
     - _EmissionColor: {r: 0.7071068, g: 0.69472706, b: 0.14342262, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
