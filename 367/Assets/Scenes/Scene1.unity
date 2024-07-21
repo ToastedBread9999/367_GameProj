@@ -14768,6 +14768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR_Hands
       objectReference: {fileID: 0}
+    - target: {fileID: 5520210676107706255, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.124
+      objectReference: {fileID: 0}
     - target: {fileID: 7816609190664437392, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
       propertyPath: m_Range
       value: 10
