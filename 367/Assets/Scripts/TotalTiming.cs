@@ -37,7 +37,7 @@ public class TotalTiming : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Find and assign the timerText reference in the new scene
-        timerText = GameObject.FindWithTag("TimerText")?.GetComponent<TextMeshProUGUI>();
+        timerText = GameObject.FindWithTag("TimerText").GetComponent<TextMeshProUGUI>();
         UpdateTimerUI(); // Update the UI to reflect the current elapsed time
     }
 

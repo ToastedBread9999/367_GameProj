@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Oxygen
   - Lock
+  - TimerText
   layers:
   - Default
   - TransparentFX
