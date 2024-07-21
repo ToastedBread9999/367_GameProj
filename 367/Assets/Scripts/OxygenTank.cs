@@ -25,39 +25,34 @@ public class OxygenTank : MonoBehaviour
         }
 
         // Initially disable the socket interactor
-        oxygenSocket.enabled = false;
+        oxygenSocket.enabled = true;
     }
 
     void Update(){
         triggerHeld = InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValue) && triggerValue > 0.01f ||
         InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValueTwo) && triggerValueTwo > 0.01f;
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Oxygen")&& !hasCollided && triggerHeld)
         {
             isAttached = true;
             hasCollided = true;
-
             // Notify the player that this canister is attached
             PlayerManager.Instance.AttachTanks(this);
-
             // Find the Canvas GameObject (assuming it's named "Canvas")
             GameObject canvasObj = GameObject.Find("Canvas");
-
             if (canvasObj != null)
             {
                 // Get the TimerManager component from the Canvas
                 TimerManager timerManager = canvasObj.GetComponent<TimerManager>();
-
                 if (timerManager != null)
                 {
                     // Access the timeRemaining variable from TimerManager
                     timerManager.timeRemaining += 60;
                     float remainingTime = timerManager.timeRemaining;
-                    Debug.Log("Added 100s to Timer");
-                    Debug.Log("Time remaining on Timer: " + remainingTime);
+                    //Debug.Log("Added 100s to Timer");
+                    //Debug.Log("Time remaining on Timer: " + remainingTime);
 
                     // Start the coroutine to destroy the oxygen tank after a delay
                     StartCoroutine(DestroyAfterDelay());
@@ -76,10 +71,10 @@ public class OxygenTank : MonoBehaviour
 
     private void OnTriggerStay(Collider other){
         if (other.CompareTag("Oxygen")&& hasCollided && triggerHeld){
-            oxygenSocket.enabled = true;
-            Debug.Log("Oxygen; Trigger is being pressed");
+            //oxygenSocket.enabled = true;
+            //Debug.Log("Oxygen; Trigger is being pressed");
         } else if (other.CompareTag("Oxygen")&& hasCollided && !triggerHeld){
-            Debug.Log("Oxygen; Trigger released");
+            //Debug.Log("Oxygen; Trigger released");
         }
     }
 
@@ -92,24 +87,22 @@ public class OxygenTank : MonoBehaviour
             // Notify the player that this canister is detached
             PlayerManager.Instance.DetachTank(this);
 
-            oxygenSocket.enabled = false;
+            //oxygenSocket.enabled = false;
 
             // Stop the destruction coroutine if the player detaches the tank
             disableCoroutine = StartCoroutine(DisableSocketWithDelay(timeBeforeDisable));
         }
     }
-
     private IEnumerator DisableSocketWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        oxygenSocket.enabled = true;
+        //oxygenSocket.enabled = true;
     }
 
     private IEnumerator DestroyAfterDelay()
     {
         // Wait for the specified amount of time
         yield return new WaitForSeconds(timeBeforeDestruction);
-
         // Destroy the oxygen tank
         //Destroy(gameObject);
     }

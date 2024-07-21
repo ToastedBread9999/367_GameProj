@@ -16,7 +16,7 @@ MonoBehaviour:
     m_SettingsList: []
     m_RuntimeSettings: []
   m_AssetVersion: 5
-  m_DefaultVolumeProfile: {fileID: 11400000, guid: 0dc9b18b7aa844b43b78a0719ffdbe36, type: 2}
+  m_DefaultVolumeProfile: {fileID: 11400000, guid: f577ec9ad56c7f140bfb11f1b90e1293, type: 2}
   m_RenderingLayerNames:
   - Default
   m_ValidRenderingLayers: 1
@@ -38,11 +38,8 @@ MonoBehaviour:
     bakingSets:
     - {fileID: 11400000, guid: ad808eabd8dc65f409de6adee2ee2b28, type: 2}
     sceneBounds:
-      m_Keys:
-      - d3bb57a776c6f414f9f9061e09cabd6a
-      m_Values:
-      - m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 81, y: 81, z: 81}
+      m_Keys: []
+      m_Values: []
     hasProbeVolumes:
       m_Keys:
       - d3bb57a776c6f414f9f9061e09cabd6a
