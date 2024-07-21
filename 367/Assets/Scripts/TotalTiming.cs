@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TotalTiming : MonoBehaviour
@@ -22,8 +21,24 @@ public class TotalTiming : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to the sceneLoaded event
             Debug.Log("Retained");
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded; // Unsubscribe from the sceneLoaded event
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Find and assign the timerText reference in the new scene
+        timerText = GameObject.FindWithTag("TimerText")?.GetComponent<TextMeshProUGUI>();
+        UpdateTimerUI(); // Update the UI to reflect the current elapsed time
     }
 
     private void Update()

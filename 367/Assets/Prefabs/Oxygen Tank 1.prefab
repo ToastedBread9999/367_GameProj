@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 894325659446050717}
   - component: {fileID: 5923575846271931045}
   - component: {fileID: 4896433881756737496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Oxygen Tank 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1835166104019386352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,12 +334,12 @@ Transform:
   m_GameObject: {fileID: 4083085376399339342}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: -0.00000003090862, z: 0.70710677, w: -0.00000003090862}
-  m_LocalPosition: {x: 0, y: 2.12, z: 0}
+  m_LocalPosition: {x: 0, y: 1.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5408734956824975788}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
 --- !u!1 &5474357342664659471
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 8679851394185431188}
   - component: {fileID: 3830925769231434941}
   m_Layer: 0
-  m_Name: Area Light
+  m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -494,8 +494,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0, g: 0.22399688, b: 1, a: 1}
-  m_Intensity: 5
-  m_Range: 5
+  m_Intensity: 1
+  m_Range: 1.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -533,7 +533,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
