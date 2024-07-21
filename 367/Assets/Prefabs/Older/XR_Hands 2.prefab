@@ -699,7 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2711504231872656182}
   m_Layer: 0
-  m_Name: XR_Hands
+  m_Name: XR_Hands 2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
