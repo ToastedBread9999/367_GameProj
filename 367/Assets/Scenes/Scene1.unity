@@ -14236,12 +14236,18 @@ PrefabInstance:
       addedObject: {fileID: 101137509}
     m_AddedComponents:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - targetCorrespondingSourceObject: {fileID: 4454103063813338393, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1751066253}
     - targetCorrespondingSourceObject: {fileID: 4454103063813338393, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1751066254}
+=======
+    - targetCorrespondingSourceObject: {fileID: 9078024643455735691, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1068290161}
+>>>>>>> 187bb44179f082b79192c76133e38d89dc222b14
 =======
     - targetCorrespondingSourceObject: {fileID: 9078024643455735691, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
       insertIndex: -1
