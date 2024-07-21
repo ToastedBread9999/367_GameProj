@@ -46,7 +46,7 @@ MonoBehaviour:
     hasProbeVolumes:
       m_Keys:
       - d3bb57a776c6f414f9f9061e09cabd6a
-      m_Values: 01
+      m_Values: 00
   m_ShaderStrippingSetting:
     m_Version: 0
     m_ExportShaderVariants: 1
