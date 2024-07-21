@@ -14787,6 +14787,7 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 101137509}
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_AddedComponents:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -14806,6 +14807,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1068290161}
 >>>>>>> 187bb44179f082b79192c76133e38d89dc222b14
+=======
+    m_AddedComponents: []
+>>>>>>> parent of 703afb1 (Player Script for WASD)
 =======
     m_AddedComponents: []
 >>>>>>> parent of 703afb1 (Player Script for WASD)
