@@ -8,8 +8,7 @@ public class KeyManager : MonoBehaviour
     public bool isPickedUp = false;
     
     bool hasCollided = false; // Flag to check if the collision has been registered
-
-    bool triggerHeld = false;
+    bool triggerHeld = false; // Check if the trigger is being held
 
     public XRSocketInteractor keySocket;
     private XRGrabInteractable grabInteractable;
@@ -44,10 +43,12 @@ public class KeyManager : MonoBehaviour
         if(other.CompareTag("Player")&& !hasCollided && triggerHeld){
 
             //Debug.Log("Key is picked up");
-
-            hasCollided = true;
-        } else if(other.CompareTag("Player")&& !hasCollided && triggerHeld){
+            isPickedUp = true;
+            
+            
+        } else if(other.CompareTag("Lock")&& !hasCollided && triggerHeld){
             //Debug.Log("Key is colliding with lock");
+            hasCollided = true;
         }
     }
 
@@ -56,8 +57,9 @@ public class KeyManager : MonoBehaviour
         if(other.CompareTag("Player") && hasCollided && triggerHeld){
             //Debug.Log("Key is being held");
             keySocket.enabled = true;
-        } else if(other.CompareTag("Lock")&& hasCollided && triggerHeld){
+        } else if(other.CompareTag("Lock")&& hasCollided && !triggerHeld){
             //Debug.Log("Key is on the lock");
+            keySocket.enabled = false;
         }
     }
 
@@ -68,6 +70,9 @@ public class KeyManager : MonoBehaviour
             //Debug.Log("Key is left on the lock");
             hasCollided = false;
             keySocket.enabled = true;
+            LockManager lockManager = other.GetComponent<LockManager>();
+            lockManager.unlocked = true;
+            lockManager.UnlockDoor();
 
             // Start the disable coroutine with delay
             disableCoroutine = StartCoroutine(DisableSocketWithDelay(delayBeforeDisable));
