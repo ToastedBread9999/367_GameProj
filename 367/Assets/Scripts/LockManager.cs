@@ -9,6 +9,9 @@ public class LockManager : MonoBehaviour
     public float moveDistance = 1.0f; // Distance to move the lock
     public float moveDuration = 1.0f; // Duration of the move
 
+    public AudioClip unlockSound;
+
+    //When the key is inserted into the door
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == keyName && !attached)
@@ -29,12 +32,12 @@ public class LockManager : MonoBehaviour
         }
     }
 
+    //Use the key to unlcok the door
     private void PlaceKeyInLock(KeyManager key)
     {
         Debug.Log("Attempting to place key in lock...");
 
-        // Optional: Play a sound or animation
-        // AudioSource.PlayClipAtPoint(lockSound, transform.position);
+        AudioSource.PlayClipAtPoint(unlockSound, transform.position);
 
         // Unlock the door or perform another action
         UnlockDoor();
@@ -42,12 +45,14 @@ public class LockManager : MonoBehaviour
         key.isPickedUp = false;
     }
 
+    //Unlock the door
     public void UnlockDoor()
     {
             Debug.Log("Door Unlocked!");
             StartCoroutine(MoveLock());
     }
 
+    //Move the lock after unlocking
     private IEnumerator MoveLock()
     {
         Vector3 startPosition = transform.position;

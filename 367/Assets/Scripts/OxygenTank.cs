@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class OxygenTank : MonoBehaviour
 {
     public XRSocketInteractor oxygenSocket;
-    public float timeBeforeDestruction = 10.0f; // Time in seconds before the oxygen tank is destroyed after being picked up
+    public float timeBeforeDestruction = 5.0f; // Time in seconds before the oxygen tank is destroyed after being picked up
     public float timeBeforeDisable = 2.0f; // Time in seconds before the oxygen tank socket is disabled
     public bool isAttached = false;
     
@@ -104,6 +103,6 @@ public class OxygenTank : MonoBehaviour
         // Wait for the specified amount of time
         yield return new WaitForSeconds(timeBeforeDestruction);
         // Destroy the oxygen tank
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
