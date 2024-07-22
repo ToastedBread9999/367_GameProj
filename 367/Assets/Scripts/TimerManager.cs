@@ -32,7 +32,7 @@ public class TimerManager : MonoBehaviour
                 timerIsRunning = false;
 
                 //Go to fail screen 
-                SceneManager.LoadScene(4); 
+                SceneManager.LoadScene("FailScreen"); 
             }
         }
     }

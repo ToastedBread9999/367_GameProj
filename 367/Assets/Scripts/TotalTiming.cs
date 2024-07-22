@@ -9,6 +9,7 @@ public class TotalTiming : MonoBehaviour
     public TextMeshProUGUI timerText; // UI Text to display the timer
 
     private static float elapsedTime = 0f; // Static variable to store elapsed time
+    private float finalTime;
     private static bool isGameFinished = false;
 
     // private void Awake()
@@ -51,6 +52,12 @@ public class TotalTiming : MonoBehaviour
             elapsedTime += Time.deltaTime;
             Debug.Log("Plus one :" + elapsedTime);
             UpdateTimerUI();
+        } else {
+            finalTime = elapsedTime;
+
+            int minutes = Mathf.FloorToInt(finalTime / 60);
+            int seconds = Mathf.FloorToInt(finalTime % 60);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
 
@@ -65,9 +72,13 @@ public class TotalTiming : MonoBehaviour
         }
     }
 
+    //Stop the timer
     public void GameFinished()
     {
+        //Note the timing and pass it
+        finalTime = elapsedTime;
         isGameFinished = true;
+
         Debug.Log("Game Finished! Total Time: " + elapsedTime);
     }
 }
