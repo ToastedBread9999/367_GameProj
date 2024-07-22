@@ -16,6 +16,10 @@ public class NextScene : MonoBehaviour
             if(SceneManager.GetActiveScene().name == "Scene3"){
                 finished.GameFinished();
                 Debug.Log("Finished Level 3");
+            } 
+            if(SceneManager.GetActiveScene().name == "Tutorial"){
+                finished.GameStart();
+                Debug.Log("Game Started");
             }
                 // Load the next scene
                 Debug.Log("Next Level");

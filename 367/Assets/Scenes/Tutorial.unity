@@ -845,6 +845,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1576769105737108649, guid: 687b1da2ef45e364d9b982352cea0893, type: 3}
+      propertyPath: finished
+      value: 
+      objectReference: {fileID: 1033555494}
     - target: {fileID: 4385179470630488298, guid: 687b1da2ef45e364d9b982352cea0893, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.860453
@@ -3334,6 +3338,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6cfb4b19ed371e459994f81b00bd863, type: 3}
+--- !u!114 &1033555494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9064214639911963690, guid: f6cfb4b19ed371e459994f81b00bd863, type: 3}
+  m_PrefabInstance: {fileID: 1033555493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47821c2915dd4fd42877319e85755a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1036222998
 GameObject:
   m_ObjectHideFlags: 0

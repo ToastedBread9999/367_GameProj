@@ -42,6 +42,11 @@ public class TotalTiming : MonoBehaviour
         // Find and assign the timerText reference in the new scene
         timerText = GameObject.FindWithTag("TimerText")?.GetComponent<TextMeshProUGUI>();
         UpdateTimerUI(); // Update the UI to reflect the current elapsed time
+
+        //If the game was restarted
+        if(SceneManager.GetActiveScene().name == "Tutorial"){
+            GameStart();
+        }
     }
 
     //Update the timer with the elapsed time
@@ -50,7 +55,7 @@ public class TotalTiming : MonoBehaviour
         if (!isGameFinished)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log("Plus one :" + elapsedTime);
+            //Debug.Log("Plus one :" + elapsedTime);
             UpdateTimerUI();
         } else {
             finalTime = elapsedTime;
@@ -80,5 +85,16 @@ public class TotalTiming : MonoBehaviour
         isGameFinished = true;
 
         Debug.Log("Game Finished! Total Time: " + elapsedTime);
+    }
+
+    //Stop the timer
+    public void GameStart()
+    {
+        //Note the timing and pass it
+        finalTime = 0;
+        elapsedTime = 0;
+        isGameFinished = false;
+
+        Debug.Log("Game Started!");
     }
 }
