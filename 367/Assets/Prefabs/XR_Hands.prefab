@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5520210676107706255, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.124
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6060136074222046975, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
       propertyPath: m_Range
@@ -201,8 +201,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2912867653597817731, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6367680461682519228}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4454103063813338393, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4145312958351307928}
   m_SourcePrefab: {fileID: 100100000, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
+--- !u!4 &927319540735663690 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6578875936591816403, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
+  m_PrefabInstance: {fileID: 6310208262603569305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1948341921123370774 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5520210676107706255, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
+  m_PrefabInstance: {fileID: 6310208262603569305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7656818485748223360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4454103063813338393, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
+  m_PrefabInstance: {fileID: 6310208262603569305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4145312958351307928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656818485748223360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25832451858471479e2919df86d678e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  mouseSensitivity: 100
+  playerBody: {fileID: 1948341921123370774}
+  vrCamera: {fileID: 927319540735663690}
 --- !u!224 &9223030406387077914 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2912867653597817731, guid: dae6923eae358634d96955fc6417e6e9, type: 3}
