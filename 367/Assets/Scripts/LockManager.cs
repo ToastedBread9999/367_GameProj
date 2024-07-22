@@ -4,7 +4,6 @@ using System.Collections;
 public class LockManager : MonoBehaviour
 {
     public string keyName = "Key"; // The name of the key GameObject
-    public bool unlocked = false;
     private bool attached = false;
 
     public float moveDistance = 1.0f; // Distance to move the lock
@@ -45,10 +44,8 @@ public class LockManager : MonoBehaviour
 
     public void UnlockDoor()
     {
-        if(unlocked){
             Debug.Log("Door Unlocked!");
             StartCoroutine(MoveLock());
-        }
     }
 
     private IEnumerator MoveLock()

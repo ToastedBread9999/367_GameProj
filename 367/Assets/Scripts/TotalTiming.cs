@@ -7,24 +7,25 @@ public class TotalTiming : MonoBehaviour
     public static TotalTiming Instance { get; private set; }
 
     public TextMeshProUGUI timerText; // UI Text to display the timer
-    private float elapsedTime = 0f;
-    private bool isGameFinished = false;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            Debug.Log("Destroyed");
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to the sceneLoaded event
-            Debug.Log("Retained");
-        }
-    }
+    private static float elapsedTime = 0f; // Static variable to store elapsed time
+    private static bool isGameFinished = false;
+
+    // private void Awake()
+    // {
+    //     if (Instance != null && Instance != this)
+    //     {
+    //         Destroy(gameObject);
+    //         Debug.Log("Destroyed");
+    //     }
+    //     else
+    //     {
+    //         Instance = this;
+    //         DontDestroyOnLoad(gameObject);
+    //         SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to the sceneLoaded event
+    //         Debug.Log("Retained");
+    //     }
+    // }
 
     private void OnDestroy()
     {
@@ -37,7 +38,7 @@ public class TotalTiming : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Find and assign the timerText reference in the new scene
-        timerText = GameObject.FindWithTag("TimerText").GetComponent<TextMeshProUGUI>();
+        timerText = GameObject.FindWithTag("TimerText")?.GetComponent<TextMeshProUGUI>();
         UpdateTimerUI(); // Update the UI to reflect the current elapsed time
     }
 
@@ -46,7 +47,7 @@ public class TotalTiming : MonoBehaviour
         if (!isGameFinished)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log("Plus one");
+            Debug.Log("Plus one :" + elapsedTime);
             UpdateTimerUI();
         }
     }

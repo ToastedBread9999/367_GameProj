@@ -7,14 +7,15 @@ public class KeyManager : MonoBehaviour
 {
     public bool isPickedUp = false;
 
-    bool hasCollided = false; // Flag to check if the collision has been registered
-    bool triggerHeld = false; // Check if the trigger is being held
+    private bool hasCollided = false; // Flag to check if the collision has been registered
+    private bool triggerHeld = false; // Check if the trigger is being held
+    private bool previousTriggerHeld = false; // To store the previous state of the trigger
 
     public XRSocketInteractor keySocket;
-    private XRGrabInteractable grabInteractable;
+    public XRGrabInteractable grabInteractable;
 
     public float delayBeforeDisable = 2.0f; // Adjust the delay time as needed
-    private Coroutine disableCoroutine;
+    //private Coroutine disableCoroutine;
 
 
     void Start()
@@ -30,11 +31,21 @@ public class KeyManager : MonoBehaviour
     }
 
 
-    void Update(){
-
-        //Check the trigger if it is pressed
+    void Update()
+    {
+        // Check the trigger if it is pressed
         triggerHeld = InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValue) && triggerValue > 0.01f ||
-        InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValueTwo) && triggerValueTwo > 0.01f;
+                      InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.grip, out float triggerValueTwo) && triggerValueTwo > 0.01f;
+
+        // Check if the trigger was released
+        if (previousTriggerHeld && !triggerHeld)
+        {
+            Debug.Log("Trigger Released");
+            // Call your method here when the trigger is released
+        }
+
+        // Update the previous state
+        previousTriggerHeld = triggerHeld;
     }
 
     //When the Key collides with the Player or the Lock
@@ -53,6 +64,7 @@ public class KeyManager : MonoBehaviour
     }
 
     //When the Key is still colliding with the Player or the Lock
+    //Enable the socket
     private void OnTriggerStay(Collider other){
         if(other.CompareTag("Player") && hasCollided && triggerHeld){
             //Debug.Log("Key is being held");
@@ -63,23 +75,32 @@ public class KeyManager : MonoBehaviour
         }
     }
 
-    //When the Key is exits the Player or the Lock colliders
+    //When the Key exits the Player or the Lock colliders
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Lock")&& hasCollided && !triggerHeld){
-            //Debug.Log("Key is left on the lock");
+        if (other.CompareTag("Lock") && hasCollided && !triggerHeld && previousTriggerHeld)
+        {
             hasCollided = false;
             keySocket.enabled = true;
+
+            // Unlock the 'door' when key is released and attached
             LockManager lockManager = other.GetComponent<LockManager>();
-            lockManager.unlocked = true;
-            lockManager.UnlockDoor();
+            if (lockManager != null)
+            {
+                lockManager.UnlockDoor();
+            }
+            else
+            {
+                Debug.LogError("LockManager component not found on the Lock object.");
+            }
 
             // Start the disable coroutine with delay
-            disableCoroutine = StartCoroutine(DisableSocketWithDelay(delayBeforeDisable));
-        } else if(other.CompareTag("Player")&& hasCollided && !triggerHeld){
-            //Debug.Log("Key dropped");
+            StartCoroutine(DisableSocketWithDelay(delayBeforeDisable));
         }
-        
+        else if (other.CompareTag("Player") && hasCollided && !triggerHeld)
+        {
+            // Debug.Log("Key dropped");
+        }
     }
 
     //Disable the socket
