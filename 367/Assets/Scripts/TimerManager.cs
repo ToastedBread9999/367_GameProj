@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour
 {
@@ -17,6 +15,7 @@ public class TimerManager : MonoBehaviour
         timeRemaining = 60; // Set the timer to 60 seconds (1 minute)
     }
 
+    //Keep counting down
     void Update()
     {
         if (timerIsRunning)
@@ -31,10 +30,14 @@ public class TimerManager : MonoBehaviour
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
+
+                //Go to fail screen 
+                SceneManager.LoadScene(4); 
             }
         }
     }
 
+    //Update the timer display
     void UpdateTimerDisplay(float timeToDisplay)
     {
         timeToDisplay += 1;

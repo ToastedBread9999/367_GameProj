@@ -35,6 +35,7 @@ public class TotalTiming : MonoBehaviour
         }
     }
 
+    //When the scene is loaded 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Find and assign the timerText reference in the new scene
@@ -42,6 +43,7 @@ public class TotalTiming : MonoBehaviour
         UpdateTimerUI(); // Update the UI to reflect the current elapsed time
     }
 
+    //Update the timer with the elapsed time
     private void Update()
     {
         if (!isGameFinished)
@@ -52,6 +54,7 @@ public class TotalTiming : MonoBehaviour
         }
     }
 
+    //Display the timer 
     private void UpdateTimerUI()
     {
         if (timerText != null)
